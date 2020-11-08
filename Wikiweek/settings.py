@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'e2+vsx0!i^zlp=84sa1z9%fr&38eilif+7*^u*d2md9_fe%%!6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.ngrok.io','.herokuapp.com']
+ALLOWED_HOSTS = ['.ngrok.io', '127.0.0.1','.herokuapp.com']
 
 
 
@@ -89,6 +89,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 WHITENOISE_USE_FINDERS = True
 
 
@@ -110,8 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 

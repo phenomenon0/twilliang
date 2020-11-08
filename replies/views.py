@@ -60,7 +60,7 @@ def wiki_search(q_word):
     #using an id from search list to generate a pa
     #print(wikipedia.summary('Ed Balls'))
     result_list = url_maker(result_list)
-    #choice = int(input('choose suitable option\n'))
+    #choice = int    (input('choose suitable option\n'))
     #print(result_list[choice])
     juice = wikipedia.page(f'{result_list[0]}').summary
     #juice = wikipedia.page(f'{result_list[choice]}').content
