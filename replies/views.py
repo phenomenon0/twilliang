@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from twilio.twiml.messaging_response import MessagingResponse
 
+
+@csrf_exempt
 def index(request):
-    return HttpResponse('Hello Mondat')
+    return HttpResponse('Hello Monay')
 
 
 def which_engine(msg):
@@ -55,7 +57,7 @@ def wiki_search(q_word):
     
         print(f'{i}. {word}')
         i += 1
-        #using an id from search list to generate a pa
+    #using an id from search list to generate a pa
     #print(wikipedia.summary('Ed Balls'))
     result_list = url_maker(result_list)
     #choice = int(input('choose suitable option\n'))

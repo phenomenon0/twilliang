@@ -5,5 +5,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.sms_response, name='sms'),
+    url('', views.index)
+    
     
 ]
+
+
