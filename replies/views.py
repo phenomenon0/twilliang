@@ -78,6 +78,7 @@ def sms_response(request):
     
     resp = MessagingResponse()
     body = request.POST.get('Body', None)
+    print'mad o'
     
     # Start our TwiML response
     new_messages = which_engine(body)
