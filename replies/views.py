@@ -7,12 +7,9 @@ import json
 
 
 
-
-
-
 def google_dic(word):
-    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
-    url = url + f'/{word}'
+    j = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    url = j + f'/{word}'
     response = requests.request("GET", url)
     json_data = json.loads(response.text)
     #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
@@ -27,10 +24,11 @@ def google_dic(word):
        
         things.append(f'{i}.')
         things.append(json_data[0]['meanings'][i-1]['partOfSpeech']) #try
-        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][r]['definition'])
+        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][0]['definition'])
+        
        
         if len(json_data[0]['meanings'][0]['definitions'])>1:
-            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][r]['example']) 
+            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][0]['example']) 
             i+=1
            
             r=+1
@@ -53,7 +51,7 @@ def which_engine(msg):
         content = wiki_search({msg[5:]})
     elif msg[:4] == 'book ':
         print(f'book search {msg[4:]}')
-    elif msg[:4] ==   'dict' :
+    elif msg[:5] ==   'dict ' :
         google_dic(f'{msg[4:]}')
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
