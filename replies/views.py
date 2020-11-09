@@ -37,6 +37,8 @@ def google_dic(word):
             i+=1
               
             r=+1  
+    
+    things = '\n'.join(things)
     return things
 
 
