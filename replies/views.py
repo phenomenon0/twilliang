@@ -6,12 +6,13 @@ import requests
 import json
 
 
-word = input('find definitions now... \n')
-url = f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}'
 
 
 
-def google_dic():
+
+def google_dic(word):
+    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    url = url + f'/{word}'
     response = requests.request("GET", url)
     json_data = json.loads(response.text)
     #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
@@ -39,6 +40,7 @@ def google_dic():
               
             r=+1  
     return things
+
 
 @csrf_exempt
 def index(request):
