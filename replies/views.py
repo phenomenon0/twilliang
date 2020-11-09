@@ -52,7 +52,7 @@ def which_engine(msg):
     elif msg[:4] == 'book ':
         print(f'book search {msg[4:]}')
     elif msg[:5] ==   'dict ' :
-        google_dic(f'{msg[4:]}')
+        google_dic(f'{msg[5:]}')
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
     elif msg[:5] == 'imdb ':
