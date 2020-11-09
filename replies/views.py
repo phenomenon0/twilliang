@@ -38,8 +38,8 @@ def google_dic(word):
               
             r=+1  
 
-    things = '\n'.join(things)
-    return things
+    bang = '\n'.join(things)
+    return bang
 
 
 @csrf_exempt
