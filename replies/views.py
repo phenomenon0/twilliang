@@ -7,9 +7,10 @@ import json
 
 
 
+
 def google_dic(word):
-    j = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
-    url = j + f'/{word}'
+    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    url = url + f'/{word}'
     response = requests.request("GET", url)
     json_data = json.loads(response.text)
     #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
@@ -24,11 +25,10 @@ def google_dic(word):
        
         things.append(f'{i}.')
         things.append(json_data[0]['meanings'][i-1]['partOfSpeech']) #try
-        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][0]['definition'])
-        
+        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][r]['definition'])
        
         if len(json_data[0]['meanings'][0]['definitions'])>1:
-            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][0]['example']) 
+            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][r]['example']) 
             i+=1
            
             r=+1
@@ -37,7 +37,7 @@ def google_dic(word):
             i+=1
               
             r=+1  
-    
+
     things = '\n'.join(things)
     return things
 
