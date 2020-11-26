@@ -133,4 +133,4 @@ def sms_response(request):
     
     msg = resp.message(items)
 
-    return HttpResponse(str(resp))
+    return HttpResponse(str(msg))
