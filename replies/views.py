@@ -60,7 +60,7 @@ def which_engine(msg):
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
     elif msg[:5] == 'wolf ':
-        content = wolfram(msg[5:])
+        content = wolfram({msg[5:]})
     else :
         print(f'searching {msg}')
     return content  
