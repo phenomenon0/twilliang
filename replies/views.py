@@ -78,11 +78,11 @@ def sms_response(request):
     
     resp = MessagingResponse()
     body = request.POST.get('Body', None)
-    
+    msg = resp.message('wild')
     
     # Start our TwiML response
     new_messages = which_engine(body)
     for items in new_messages:
-        msg = resp.message(str(items))
+        msg = resp.message(items)
 
     return HttpResponse(str(resp))
