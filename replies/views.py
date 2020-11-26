@@ -50,7 +50,7 @@ def index(request):
 
 
 def which_engine(msg):
-    if msg[:5] == 'wiki ':
+    if msg[:5].lowercase == 'wiki ':
         print(f'Wikipedia search {msg[5:]}')
         content = wiki_search({msg[5:]})
     elif msg[:4] == 'book ':
@@ -130,7 +130,7 @@ def sms_response(request):
     
     # Start our TwiML response
     new_messages = which_engine(body)
-    for items in new_messages:
-        msg = resp.message(items)
+    
+    msg = resp.message(items)
 
     return HttpResponse(str(resp))
