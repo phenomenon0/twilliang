@@ -131,6 +131,6 @@ def sms_response(request):
     # Start our TwiML response
     new_messages = which_engine(body)
     
-    msg = resp.message(items)
+    msg = resp.message(new_messages)
 
     return HttpResponse(str(msg))
