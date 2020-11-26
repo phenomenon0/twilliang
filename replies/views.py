@@ -83,6 +83,6 @@ def sms_response(request):
     # Start our TwiML response
     new_messages = which_engine(body)
     for items in new_messages:
-        msg = resp.message(items)
+        msg = resp.message(str(items))
 
     return HttpResponse(str(resp))
