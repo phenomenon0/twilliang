@@ -50,7 +50,7 @@ def index(request):
 
 
 def which_engine(msg):
-    if msg[:5].lowercase == 'wiki ':
+    if msg[:5] == 'wiki ':
         print(f'Wikipedia search {msg[5:]}')
         content = wiki_search({msg[5:]})
     elif msg[:4] == 'book ':
