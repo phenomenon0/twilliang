@@ -8,6 +8,8 @@ import json
 
 
 
+
+
 def google_dic(word):
     url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
     url = url + f'/{word}'
@@ -57,8 +59,8 @@ def which_engine(msg):
         google_dic(f'{msg[5:]}')
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
-    elif msg[:5] == 'imdb ':
-        print(f'IMDB search {msg[4:]}')
+    elif msg[:5] == 'wolf ':
+        content = wolfram(msg[5:])
     else :
         print(f'searching {msg}')
     return content  
@@ -104,6 +106,14 @@ def wiki_search(q_word):
     #juice = wikipedia.page(f'{result_list[choice]}').content
     word_list = wordsplitter(juice)
     return  word_list
+
+def wolfram(msg):
+    APPID = 'LR36L2-JWRKPRLR5L'
+    your_query = msg.replace(' ', '+')
+    url_wolf = f'https://api.wolframalpha.com/v1/result?i={your_query}&appid={APPID}'
+    response = requests.request("GET", url_wolf)
+    answer = response.text
+    return answer 
 
 
 
