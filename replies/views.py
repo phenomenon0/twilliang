@@ -9,6 +9,7 @@ import json
 #wekker
 
 def google_dic(word):
+    word = word.strip()
     url_1 = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
     url_1 = url_1 + f'/{word}'
     response = requests.request("GET", url_1)
