@@ -107,13 +107,14 @@ def wiki_search(q_word):
     word_list = wordsplitter(juice)
     return  word_list
 
-def wolframalpha(msg):
+def wolframalpha(msge):
     APPID = 'LR36L2-JWRKPRLR5L'
-    your_query = msg
+    your_query = msge
     your_query = your_query.replace(' ', '+')
     url = f'https://api.wolframalpha.com/v1/result?i={your_query}&appid={APPID}'
     response = requests.request("GET", url)
     answer  = response.text
+    print(answer)
     return answer
 
 
