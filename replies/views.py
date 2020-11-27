@@ -114,6 +114,7 @@ def wolframalpha(msge):
     url = f'https://api.wolframalpha.com/v1/result?i={your_query}&appid={APPID}'
     response = requests.request("GET", url)
     answer  = response.text
+    answer = wordsplitter(answer)
     print(answer)
     return answer
 
@@ -130,6 +131,7 @@ def sms_response(request):
     
     # Start our TwiML response
     new_messages = which_engine(body)
+    
     for items in new_messages:
         msg = resp.message(items)
 
