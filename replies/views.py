@@ -42,6 +42,8 @@ def google_dic(word):
     return bang
 
 
+
+
 @csrf_exempt
 def index(request):
     return HttpResponse('Hello Monay')
@@ -51,8 +53,8 @@ def which_engine(msg):
     if msg[:5] == 'wiki ':
         print(f'Wikipedia search {msg[5:]}')
         content = wiki_search(msg[5:])
-    elif msg[:4] == 'book ':
-        print(f'book search {msg[4:]}')
+    elif msg[:5] == 'wolf ':
+        content = wolframalpha(msg[5:])
     elif msg[:5] ==   'dict ' :
         google_dic(f'{msg[5:]}')
     elif msg[:5] == 'movie ':
@@ -105,7 +107,14 @@ def wiki_search(q_word):
     word_list = wordsplitter(juice)
     return  word_list
 
-
+def wolframalpha(msg):
+    APPID = 'LR36L2-JWRKPRLR5L'
+    your_query = msg
+    your_query = your_query.replace(' ', '+')
+    url = f'https://api.wolframalpha.com/v1/result?i={your_query}&appid={APPID}'
+    response = requests.request("GET", url)
+    answer  = response.text
+    return answer
 
 
 
