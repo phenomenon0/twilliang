@@ -2,6 +2,8 @@ import wikipedia
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from twilio.twiml.messaging_response import MessagingResponse
+import requests
+import json
 
 
 @csrf_exempt
@@ -14,7 +16,7 @@ def which_engine(msg):
         print(f'Wikipedia search {msg[5:]}')
         content = wiki_search({msg[5:]})
     elif msg[:4] == 'book ':
-        print(f'book search {msg[4:]}')
+       print(f'book search {msg[4:]}')
     elif msg[:4] ==   'dict' :
         print(f'dictionary search {msg[4:]}')
     elif msg[:5] == 'movie ':
