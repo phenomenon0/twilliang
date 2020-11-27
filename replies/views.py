@@ -8,43 +8,6 @@ import json
 
 #wekker
 
-def google_dic(word):
-    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
-    url = url + f'/{word}'
-    response = requests.request("GET", url)
-    json_data = json.loads(response.text)
-    #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
-    #counter = len(json_data[0]['meanings'][0])
-    i=1
-    things = []
-    r=0
-    
-    things.append(json_data[0]['word'] + ' ' + json_data[0]['phonetics'][0]['text'] )
-    
-    for item in json_data[0]['meanings']:
-       
-        things.append(f'{i}.')
-        things.append(json_data[0]['meanings'][i-1]['partOfSpeech']) #try
-        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][r]['definition'])
-       
-        if len(json_data[0]['meanings'][0]['definitions'])>1:
-            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][r]['example']) 
-            i+=1
-           
-            r=+1
-        else :
-             #phonetics
-            i+=1
-              
-            r=+1  
-
-    bang = '\n'.join(things)
-    print(bang)
-    print(type()(bang))
-    bang = wordsplitter(bang)
-    print(bang = wordsplitter(bang))
-    return bang
-
 
 
 
@@ -122,6 +85,43 @@ def wolframalpha(msge):
     print(answer)
     return answer
 
+
+def google_dic(word):
+    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    url = url + f'/{word}'
+    response = requests.request("GET", url)
+    json_data = json.loads(response.text)
+    #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
+    #counter = len(json_data[0]['meanings'][0])
+    i=1
+    things = []
+    r=0
+    
+    things.append(json_data[0]['word'] + ' ' + json_data[0]['phonetics'][0]['text'] )
+    
+    for item in json_data[0]['meanings']:
+       
+        things.append(f'{i}.')
+        things.append(json_data[0]['meanings'][i-1]['partOfSpeech']) #try
+        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][r]['definition'])
+       
+        if len(json_data[0]['meanings'][0]['definitions'])>1:
+            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][r]['example']) 
+            i+=1
+           
+            r=+1
+        else :
+             #phonetics
+            i+=1
+              
+            r=+1  
+
+    bang = '\n'.join(things)
+    print(bang)
+    print(type()(bang))
+    bang = wordsplitter(bang)
+    print(bang = wordsplitter(bang))
+    return bang
 
 
 
