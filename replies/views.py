@@ -39,7 +39,7 @@ def google_dic(word):
               
             r=+1  
 
-    bang = '\n'.join(things)
+    bang = ' '.join(things)
     print(bang)
     bang = wordsplitter(bang)
     
