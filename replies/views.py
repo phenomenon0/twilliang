@@ -70,7 +70,7 @@ def wiki_search(q_word):
 
 
 
-
+#risk
 
 
 @csrf_exempt
