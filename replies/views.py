@@ -62,7 +62,7 @@ def which_engine(msg):
         content = wolframalpha(msg[5:])
     elif msg[:5] ==   'dict ' :
         print(f'dict search {msg[5:]}')
-        google_dic(msg[5:])
+        content = google_dic(msg[5:])
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
     elif msg[:5] == 'imdb ':
