@@ -6,6 +6,42 @@ import requests
 import json
 
 
+#wekker
+
+def google_dic(word):
+    url = f'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    url = url + f'/{word}'
+    response = requests.request("GET", url)
+    json_data = json.loads(response.text)
+    #print('audio: ' + json_data[0]['phonetics'][0]['audio'])
+    #counter = len(json_data[0]['meanings'][0])
+    i=1
+    things = []
+    r=0
+    
+    things.append(json_data[0]['word'] + ' ' + json_data[0]['phonetics'][0]['text'] )
+    
+    for item in json_data[0]['meanings']:
+       
+        things.append(f'{i}.')
+        things.append(json_data[0]['meanings'][i-1]['partOfSpeech']) #try
+        things.append('Definition: ' + json_data[0]['meanings'][0]['definitions'][r]['definition'])
+       
+        if len(json_data[0]['meanings'][0]['definitions'])>1:
+            things.append('Example: ' + json_data[0]['meanings'][0]['definitions'][r]['example']) 
+            i+=1
+           
+            r=+1
+        else :
+             #phonetics
+            i+=1
+              
+            r=+1  
+
+    bang = '\n'.join(things)
+    return bang
+
+
 @csrf_exempt
 def index(request):
     return HttpResponse('Hello Monay')
@@ -16,13 +52,13 @@ def which_engine(msg):
         print(f'Wikipedia search {msg[5:]}')
         content = wiki_search({msg[5:]})
     elif msg[:4] == 'book ':
-       print(f'book search {msg[4:]}')
-    elif msg[:4] ==   'dict' :
-        print(f'dictionary search {msg[4:]}')
+        print(f'book search {msg[4:]}')
+    elif msg[:5] ==   'dict ' :
+        google_dic(f'{msg[5:]}')
     elif msg[:5] == 'movie ':
         print(f'Imdb search {msg[5:]}')
-    elif msg[:5] == 'wolf ':
-        content = wolfram({msg[5:]})
+    elif msg[:5] == 'imdb ':
+        print(f'IMDB search {msg[4:]}')
     else :
         print(f'searching {msg}')
     return content  
@@ -69,15 +105,6 @@ def wiki_search(q_word):
     word_list = wordsplitter(juice)
     return  word_list
 
-def wolfram(msg):
-    APPID = 'LR36L2-JWRKPRLR5L'
-    your_query = msg.replace(' ', '+')
-    url_wolf = f'https://api.wolframalpha.com/v1/result?i={your_query}&appid={APPID}'
-    response = requests.request("GET", url_wolf)
-    answer = response.text
-    return answer 
-
-
 
 
 
@@ -90,9 +117,12 @@ def sms_response(request):
     resp = MessagingResponse()
     body = request.POST.get('Body', None)
     
+    
     # Start our TwiML response
     new_messages = which_engine(body)
     for items in new_messages:
         msg = resp.message(items)
 
     return HttpResponse(str(resp))
+
+   
